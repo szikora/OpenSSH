@@ -1,10 +1,10 @@
 BUILDHOME = $(PWD)
-OSX_RELEASE = 10.6
 OPENSSHVERSION = 5.6p1
+#OSX_RELEASE = 10.6
 
 all: package-openssh
-clean: clean-openssh
 
+clean: clean-openssh
 
 clean-openssh:
 	rm -rf openssh
@@ -12,9 +12,9 @@ clean-openssh:
 	rm -f fetch-openssh build-openssh install-openssh package-openssh
 
 clean-openssh-bin:
-	rm -f openssh-$(OPENSSHVERSION).tar.gz
+	#rm -f openssh-$(OPENSSHVERSION).tar.gz
 	rm -rf OpenSSH-$(OPENSSHVERSION).pkg
-	rm -f OpenSSH-$(OPENSSHVERSION).dmg
+	#rm -f OpenSSH-$(OPENSSHVERSION).dmg
 
 openssh-$(OPENSSHVERSION).tar.gz:
 	curl -O http://ftp.belnet.be/packages/openbsd/OpenSSH/portable/$@
@@ -26,6 +26,16 @@ fetch-openssh: openssh-$(OPENSSHVERSION).tar.gz
 	touch $@
 
 build-openssh: fetch-openssh
+ifeq ("$(OSX_RELEASE)","10.5")
+	cd openssh && \
+	LIBS="-lresolv" \
+	CFLAGS="-isysroot /Developer/SDKs/MacOSX10.5.sdk -arch i386 -arch ppc7400 -mmacosx-version-min=10.5 -g" \
+	LDFLAGS="-arch i386 -arch ppc7400" \
+	./configure --prefix=/Library/OpenSC  && \
+	make && \
+	make install-nokeys prefix=$(BUILDHOME)/compiled-openssh/Library/OpenSC
+endif
+ifeq ("$(OSX_RELEASE)","10.6")
 	cd openssh && \
 	LIBS="-lresolv" \
 	CFLAGS="-arch x86_64 -arch i386" \
@@ -33,6 +43,7 @@ build-openssh: fetch-openssh
 	./configure --prefix=/Library/OpenSC  && \
 	make && \
 	make install-nokeys prefix=$(BUILDHOME)/compiled-openssh/Library/OpenSC
+endif
 	rm -f $(BUILDHOME)/compiled-openssh/Library/OpenSC/bin/ssh-keyscan
 	rm -f $(BUILDHOME)/compiled-openssh/Library/OpenSC/etc/ssh_host*
 	rm -f $(BUILDHOME)/compiled-openssh/Library/OpenSC/etc/sshd_config
@@ -80,5 +91,5 @@ package-openssh: build-openssh
 	-e MacOSX/$(OSX_RELEASE)/resources \
 	-s MacOSX/$(OSX_RELEASE)/scripts
 	rm -f OpenSSH-$(OPENSSHVERSION).dmg
-	hdiutil create -srcfolder OpenSSH-$(OPENSSHVERSION).pkg -volname "OpenSSH with Smartcard support for $(OSX_RELEASE)" OpenSSH-$(OPENSSHVERSION).dmg
+	hdiutil create -srcfolder OpenSSH-$(OPENSSHVERSION).pkg -volname "OpenSSH with Smartcard support for $(OSX_RELEASE)" OpenSSH-$(OPENSSHVERSION)_for_$(OSX_RELEASE).dmg
 	touch $@

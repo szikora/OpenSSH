@@ -1,0 +1,24 @@
+#!/bin/bash
+if [ "$(id -u)" != "0" ]; then
+   echo "This script must be run as root:" 1>&2
+   echo "" 1>&2
+   echo "sudo /usr/local/bin/openssh-uninstall" 1>&2
+   exit 1
+fi
+
+for file in /Library/OpenSC/bin/scscp /Library/OpenSC/bin/scsftp /Library/OpenSC/bin/scssh /Library/OpenSC/bin/scssh-add /Library/OpenSC/bin/scssh-agent /Library/OpenSC/bin/scssh-keygen /Library/OpenSC/etc/moduli /Library/OpenSC/etc/ssh_config /Library/OpenSC/share/man/man1/scssh-add.1 /Library/OpenSC/share/man/man1/scssh-agent.1 /Library/OpenSC/share/man/man1/scssh-keygen.1 /Library/OpenSC/share/man/man1/scssh.1 /Library/OpenSC/share/man/man1/scscp.1 /Library/OpenSC/share/man/man1/scsftp.1 /Library/OpenSC/share/man/man5/scssh_config.5 /Library/OpenSC/share/man/man5/moduli.5; do
+	test -f $file && rm -f $file
+done
+
+for file in /Library/OpenSC/bin/scslogin /Library/OpenSC/share/man/man1/scslogin.1; do
+	test -L $file && rm -f $file
+done
+
+rm -f /usr/local/bin/openssh-uninstall
+
+# delete receipts on 10.6
+for file in /var/db/receipts/org.opensc-project.mac.ssh.bom /var/db/receipts/org.opensc-project.mac.ssh.plist; do
+	test -f $file && rm -f $file
+done
+
+echo "OpenSSH with smartcard support has been removed from your system. See you again!"

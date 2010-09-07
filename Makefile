@@ -58,6 +58,8 @@ build-openssh: fetch-openssh
 	rm -f $(BUILDHOME)/compiled-openssh/Library/OpenSC/share/man/man1/slogin.1
 	cd $(BUILDHOME)/compiled-openssh/Library/OpenSC/share/man/man1/ && ln -s ./scssh.1 scslogin.1
 	mv $(BUILDHOME)/compiled-openssh/Library/OpenSC/share/man/man5/ssh_config.5 $(BUILDHOME)/compiled-openssh/Library/OpenSC/share/man/man5/scssh_config.5
+	mkdir -p $(BUILDHOME)/compiled-openssh/usr/local/bin
+	cp $(BUILDHOME)/openssh-uninstall $(BUILDHOME)/compiled-openssh/usr/local/bin
 	touch $@
 
 install-openssh: build-openssh

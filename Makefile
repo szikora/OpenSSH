@@ -33,14 +33,13 @@ build-openssh: fetch-openssh
 	./configure --prefix=/Library/OpenSC  && \
 	make && \
 	make install-nokeys prefix=$(BUILDHOME)/compiled-openssh/Library/OpenSC
-	mv $(BUILDHOME)/compiled-openssh/Library/OpenSC/share/man $(BUILDHOME)/compiled-openssh/Library/OpenSC/man
 	rm -f $(BUILDHOME)/compiled-openssh/Library/OpenSC/bin/ssh-keyscan
 	rm -f $(BUILDHOME)/compiled-openssh/Library/OpenSC/etc/ssh_host*
 	rm -f $(BUILDHOME)/compiled-openssh/Library/OpenSC/etc/sshd_config
 	rm -rf $(BUILDHOME)/compiled-openssh/Library/OpenSC/libexec
-	rm -f $(BUILDHOME)/compiled-openssh/Library/OpenSC/man/man1/ssh-keyscan.1
-	rm -f $(BUILDHOME)/compiled-openssh/Library/OpenSC/man/man5/sshd_config.5
-	rm -rf $(BUILDHOME)/compiled-openssh/Library/OpenSC/man/man8
+	rm -f $(BUILDHOME)/compiled-openssh/Library/OpenSC/share/man/man1/ssh-keyscan.1
+	rm -f $(BUILDHOME)/compiled-openssh/Library/OpenSC/share/man/man5/sshd_config.5
+	rm -rf $(BUILDHOME)/compiled-openssh/Library/OpenSC/share/man/man8
 	rm -rf $(BUILDHOME)/compiled-openssh/Library/OpenSC/sbin
 	mv $(BUILDHOME)/compiled-openssh/Library/OpenSC/bin/ssh $(BUILDHOME)/compiled-openssh/Library/OpenSC/bin/scssh
 	mv $(BUILDHOME)/compiled-openssh/Library/OpenSC/bin/ssh-add $(BUILDHOME)/compiled-openssh/Library/OpenSC/bin/scssh-add
@@ -50,15 +49,15 @@ build-openssh: fetch-openssh
 	mv $(BUILDHOME)/compiled-openssh/Library/OpenSC/bin/sftp $(BUILDHOME)/compiled-openssh/Library/OpenSC/bin/scsftp
 	rm -f $(BUILDHOME)/compiled-openssh/Library/OpenSC/bin/slogin
 	cd $(BUILDHOME)/compiled-openssh/Library/OpenSC/bin/ && ln -s ./scssh scslogin
-	mv $(BUILDHOME)/compiled-openssh/Library/OpenSC/man/man1/ssh-add.1 $(BUILDHOME)/compiled-openssh/Library/OpenSC/man/man1/scssh-add.1
-	mv $(BUILDHOME)/compiled-openssh/Library/OpenSC/man/man1/ssh-agent.1 $(BUILDHOME)/compiled-openssh/Library/OpenSC/man/man1/scssh-agent.1
-	mv $(BUILDHOME)/compiled-openssh/Library/OpenSC/man/man1/ssh-keygen.1 $(BUILDHOME)/compiled-openssh/Library/OpenSC/man/man1/scssh-keygen.1
-	mv $(BUILDHOME)/compiled-openssh/Library/OpenSC/man/man1/ssh.1 $(BUILDHOME)/compiled-openssh/Library/OpenSC/man/man1/scssh.1
-	mv $(BUILDHOME)/compiled-openssh/Library/OpenSC/man/man1/scp.1 $(BUILDHOME)/compiled-openssh/Library/OpenSC/man/man1/scscp.1
-	mv $(BUILDHOME)/compiled-openssh/Library/OpenSC/man/man1/sftp.1 $(BUILDHOME)/compiled-openssh/Library/OpenSC/man/man1/scsftp.1
-	rm -f $(BUILDHOME)/compiled-openssh/Library/OpenSC/man/man1/slogin.1
-	cd $(BUILDHOME)/compiled-openssh/Library/OpenSC/man/man1/ && ln -s ./scssh.1 scslogin.1
-	mv $(BUILDHOME)/compiled-openssh/Library/OpenSC/man/man5/ssh_config.5 $(BUILDHOME)/compiled-openssh/Library/OpenSC/man/man5/scssh_config.5
+	mv $(BUILDHOME)/compiled-openssh/Library/OpenSC/share/man/man1/ssh-add.1 $(BUILDHOME)/compiled-openssh/Library/OpenSC/share/man/man1/scssh-add.1
+	mv $(BUILDHOME)/compiled-openssh/Library/OpenSC/share/man/man1/ssh-agent.1 $(BUILDHOME)/compiled-openssh/Library/OpenSC/share/man/man1/scssh-agent.1
+	mv $(BUILDHOME)/compiled-openssh/Library/OpenSC/share/man/man1/ssh-keygen.1 $(BUILDHOME)/compiled-openssh/Library/OpenSC/share/man/man1/scssh-keygen.1
+	mv $(BUILDHOME)/compiled-openssh/Library/OpenSC/share/man/man1/ssh.1 $(BUILDHOME)/compiled-openssh/Library/OpenSC/share/man/man1/scssh.1
+	mv $(BUILDHOME)/compiled-openssh/Library/OpenSC/share/man/man1/scp.1 $(BUILDHOME)/compiled-openssh/Library/OpenSC/share/man/man1/scscp.1
+	mv $(BUILDHOME)/compiled-openssh/Library/OpenSC/share/man/man1/sftp.1 $(BUILDHOME)/compiled-openssh/Library/OpenSC/share/man/man1/scsftp.1
+	rm -f $(BUILDHOME)/compiled-openssh/Library/OpenSC/share/man/man1/slogin.1
+	cd $(BUILDHOME)/compiled-openssh/Library/OpenSC/share/man/man1/ && ln -s ./scssh.1 scslogin.1
+	mv $(BUILDHOME)/compiled-openssh/Library/OpenSC/share/man/man5/ssh_config.5 $(BUILDHOME)/compiled-openssh/Library/OpenSC/share/man/man5/scssh_config.5
 	touch $@
 
 install-openssh: build-openssh

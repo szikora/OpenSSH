@@ -1,6 +1,5 @@
 BUILDHOME = $(PWD)
 OPENSSHVERSION = 5.6p1
-#OSX_RELEASE = 10.6
 
 all: package-openssh
 
@@ -12,9 +11,9 @@ clean-openssh:
 	rm -f fetch-openssh build-openssh install-openssh package-openssh
 
 clean-openssh-bin:
-	#rm -f openssh-$(OPENSSHVERSION).tar.gz
+	rm -f openssh-$(OPENSSHVERSION).tar.gz
 	rm -rf OpenSSH-$(OPENSSHVERSION).pkg
-	#rm -f OpenSSH-$(OPENSSHVERSION).dmg
+	rm -f OpenSSH-$(OPENSSHVERSION)_for_$(OSX_RELEASE).dmg
 
 openssh-$(OPENSSHVERSION).tar.gz:
 	curl -O http://ftp.belnet.be/packages/openbsd/OpenSSH/portable/$@
@@ -90,6 +89,6 @@ package-openssh: build-openssh
 	--no-relocate \
 	-e MacOSX/$(OSX_RELEASE)/resources \
 	-s MacOSX/$(OSX_RELEASE)/scripts
-	rm -f OpenSSH-$(OPENSSHVERSION).dmg
+	rm -f OpenSSH-$(OPENSSHVERSION)_for_$(OSX_RELEASE).dmg
 	hdiutil create -srcfolder OpenSSH-$(OPENSSHVERSION).pkg -volname "OpenSSH with Smartcard support for $(OSX_RELEASE)" OpenSSH-$(OPENSSHVERSION)_for_$(OSX_RELEASE).dmg
 	touch $@

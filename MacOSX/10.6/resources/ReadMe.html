@@ -7,7 +7,6 @@
   <meta name="Generator" content="Cocoa HTML Writer">
   <meta name="CocoaVersion" content="1038.32">
   <style type="text/css">
-    body {background-color: #000000}
     p.p2 {margin: 0.0px 0.0px 12.0px 0.0px; font: 12.0px Helvetica}
     p.p3 {margin: 0.0px 0.0px 12.0px 0.0px; font: 13.0px Helvetica}
     span.s1 {text-decoration: underline ; color: #0000ee}
@@ -16,11 +15,11 @@
 <body>
 <h1 style="margin: 0.0px 0.0px 10.0px 0.0px; font: 16.0px Helvetica"><b>OpenSSH, version 5.6p1</b></h1>
 <p class="p2">for Mac OS X 10.6 (Snow Leopard), universal (32-bit and 64-bit)</p>
-<p class="p2">This OpenSSH provides recompiled ssh applications to work with smart cards. Native OpenSSH (5.2p1) didn't support smart cards. All executables are installed in /Library/OpenSC/bin/ and are prepended with a 'sc' (ssh -&gt; scssh), so there is no conflict with the native executables installed with MacOSX. You can also add /Library/OpenSC/bin to your $PATH without conflict.</p>
-<p class="p2">To test and to use:</p>
+<p class="p2">This OpenSSH provides recompiled ssh applications to work with smart cards. Native OpenSSH (5.2p1) didn't support smart cards. All executables are installed in /Library/OpenSSH/bin/ and are prepended with a 'sc' (ssh -&gt; scssh), so there is no conflict with the native executables installed with MacOSX. You can also add /Library/OpenSSH/bin to your $PATH without conflict.</p>
+<p class="p2">To test and to use (with OpenSC PKCS11 lib):</p>
 <p class="p2">/Library/OpenSC/bin/pkcs15-tool --read-ssh-key your_id</p>
 <p class="p2">Paste the relevant line to the authorized_keys file on the remote system</p>
-<p class="p2">/Library/OpenSC/bin/scssh -I /Librart/OpenSC/lib/opensc-pkcs11.so login@remote.org</p>
+<p class="p2">/Library/OpenSSH/bin/sc-ssh -I /Library/OpenSC/lib/opensc-pkcs11.so login@remote.org</p>
 <p class="p3"><b>Documentation:</b></p>
 <p class="p2">The OpenSC Wiki is available at: <a href="http://www.opensc-project.org/opensc"><span class="s1">http://www.opensc-project.org/opensc</span></a> and should be consulted for further documentation and support.</p>
 </body>

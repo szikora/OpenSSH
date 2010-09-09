@@ -30,50 +30,49 @@ ifeq ("$(OSX_RELEASE)","10.5")
 	LIBS="-lresolv" \
 	CFLAGS="-isysroot /Developer/SDKs/MacOSX10.5.sdk -arch i386 -arch ppc7400 -mmacosx-version-min=10.5 -g" \
 	LDFLAGS="-arch i386 -arch ppc7400" \
-	./configure --prefix=/Library/OpenSC  && \
+	./configure --prefix=/Library/OpenSSH  && \
 	make && \
-	make install-nokeys prefix=$(BUILDHOME)/compiled-openssh/Library/OpenSC
+	make install-nokeys prefix=$(BUILDHOME)/compiled-openssh/Library/OpenSSH
 endif
 ifeq ("$(OSX_RELEASE)","10.6")
 	cd openssh && \
 	LIBS="-lresolv" \
 	CFLAGS="-arch x86_64 -arch i386" \
 	LDFLAGS="-arch x86_64 -arch i386" \
-	./configure --prefix=/Library/OpenSC  && \
+	./configure --prefix=/Library/OpenSSH  && \
 	make && \
-	make install-nokeys prefix=$(BUILDHOME)/compiled-openssh/Library/OpenSC
+	make install-nokeys prefix=$(BUILDHOME)/compiled-openssh/Library/OpenSSH
 endif
-	rm -f $(BUILDHOME)/compiled-openssh/Library/OpenSC/bin/ssh-keyscan
-	rm -f $(BUILDHOME)/compiled-openssh/Library/OpenSC/etc/ssh_host*
-	rm -f $(BUILDHOME)/compiled-openssh/Library/OpenSC/etc/sshd_config
-	rm -rf $(BUILDHOME)/compiled-openssh/Library/OpenSC/libexec
-	rm -f $(BUILDHOME)/compiled-openssh/Library/OpenSC/share/man/man1/ssh-keyscan.1
-	rm -f $(BUILDHOME)/compiled-openssh/Library/OpenSC/share/man/man5/sshd_config.5
-	rm -rf $(BUILDHOME)/compiled-openssh/Library/OpenSC/share/man/man8
-	rm -rf $(BUILDHOME)/compiled-openssh/Library/OpenSC/sbin
-	mv $(BUILDHOME)/compiled-openssh/Library/OpenSC/bin/ssh $(BUILDHOME)/compiled-openssh/Library/OpenSC/bin/scssh
-	mv $(BUILDHOME)/compiled-openssh/Library/OpenSC/bin/ssh-add $(BUILDHOME)/compiled-openssh/Library/OpenSC/bin/scssh-add
-	mv $(BUILDHOME)/compiled-openssh/Library/OpenSC/bin/ssh-agent $(BUILDHOME)/compiled-openssh/Library/OpenSC/bin/scssh-agent
-	mv $(BUILDHOME)/compiled-openssh/Library/OpenSC/bin/ssh-keygen $(BUILDHOME)/compiled-openssh/Library/OpenSC/bin/scssh-keygen
-	mv $(BUILDHOME)/compiled-openssh/Library/OpenSC/bin/scp $(BUILDHOME)/compiled-openssh/Library/OpenSC/bin/scscp
-	mv $(BUILDHOME)/compiled-openssh/Library/OpenSC/bin/sftp $(BUILDHOME)/compiled-openssh/Library/OpenSC/bin/scsftp
-	rm -f $(BUILDHOME)/compiled-openssh/Library/OpenSC/bin/slogin
-	cd $(BUILDHOME)/compiled-openssh/Library/OpenSC/bin/ && ln -s ./scssh scslogin
-	mv $(BUILDHOME)/compiled-openssh/Library/OpenSC/share/man/man1/ssh-add.1 $(BUILDHOME)/compiled-openssh/Library/OpenSC/share/man/man1/scssh-add.1
-	mv $(BUILDHOME)/compiled-openssh/Library/OpenSC/share/man/man1/ssh-agent.1 $(BUILDHOME)/compiled-openssh/Library/OpenSC/share/man/man1/scssh-agent.1
-	mv $(BUILDHOME)/compiled-openssh/Library/OpenSC/share/man/man1/ssh-keygen.1 $(BUILDHOME)/compiled-openssh/Library/OpenSC/share/man/man1/scssh-keygen.1
-	mv $(BUILDHOME)/compiled-openssh/Library/OpenSC/share/man/man1/ssh.1 $(BUILDHOME)/compiled-openssh/Library/OpenSC/share/man/man1/scssh.1
-	mv $(BUILDHOME)/compiled-openssh/Library/OpenSC/share/man/man1/scp.1 $(BUILDHOME)/compiled-openssh/Library/OpenSC/share/man/man1/scscp.1
-	mv $(BUILDHOME)/compiled-openssh/Library/OpenSC/share/man/man1/sftp.1 $(BUILDHOME)/compiled-openssh/Library/OpenSC/share/man/man1/scsftp.1
-	rm -f $(BUILDHOME)/compiled-openssh/Library/OpenSC/share/man/man1/slogin.1
-	cd $(BUILDHOME)/compiled-openssh/Library/OpenSC/share/man/man1/ && ln -s ./scssh.1 scslogin.1
-	mv $(BUILDHOME)/compiled-openssh/Library/OpenSC/share/man/man5/ssh_config.5 $(BUILDHOME)/compiled-openssh/Library/OpenSC/share/man/man5/scssh_config.5
+	rm -f $(BUILDHOME)/compiled-openssh/Library/OpenSSH/bin/ssh-keyscan
+	rm -f $(BUILDHOME)/compiled-openssh/Library/OpenSSH/etc/ssh_host*
+	rm -f $(BUILDHOME)/compiled-openssh/Library/OpenSSH/etc/sshd_config
+	rm -rf $(BUILDHOME)/compiled-openssh/Library/OpenSSH/libexec
+	rm -f $(BUILDHOME)/compiled-openssh/Library/OpenSSH/share/man/man1/ssh-keyscan.1
+	rm -f $(BUILDHOME)/compiled-openssh/Library/OpenSSH/share/man/man5/sshd_config.5
+	rm -rf $(BUILDHOME)/compiled-openssh/Library/OpenSSH/share/man/man8
+	rm -rf $(BUILDHOME)/compiled-openssh/Library/OpenSSH/sbin
+	mv $(BUILDHOME)/compiled-openssh/Library/OpenSSH/bin/ssh $(BUILDHOME)/compiled-openssh/Library/OpenSSH/bin/sc-ssh
+	mv $(BUILDHOME)/compiled-openssh/Library/OpenSSH/bin/ssh-add $(BUILDHOME)/compiled-openssh/Library/OpenSSH/bin/sc-ssh-add
+	mv $(BUILDHOME)/compiled-openssh/Library/OpenSSH/bin/ssh-agent $(BUILDHOME)/compiled-openssh/Library/OpenSSH/bin/sc-ssh-agent
+	mv $(BUILDHOME)/compiled-openssh/Library/OpenSSH/bin/ssh-keygen $(BUILDHOME)/compiled-openssh/Library/OpenSSH/bin/sc-ssh-keygen
+	mv $(BUILDHOME)/compiled-openssh/Library/OpenSSH/bin/scp $(BUILDHOME)/compiled-openssh/Library/OpenSSH/bin/sc-scp
+	mv $(BUILDHOME)/compiled-openssh/Library/OpenSSH/bin/sftp $(BUILDHOME)/compiled-openssh/Library/OpenSSH/bin/sc-sftp
+	rm -f $(BUILDHOME)/compiled-openssh/Library/OpenSSH/bin/slogin
+	cd $(BUILDHOME)/compiled-openssh/Library/OpenSSH/bin/ && ln -s ./sc-ssh sc-slogin
+	mv $(BUILDHOME)/compiled-openssh/Library/OpenSSH/share/man/man1/ssh-add.1 $(BUILDHOME)/compiled-openssh/Library/OpenSSH/share/man/man1/sc-ssh-add.1
+	mv $(BUILDHOME)/compiled-openssh/Library/OpenSSH/share/man/man1/ssh-agent.1 $(BUILDHOME)/compiled-openssh/Library/OpenSSH/share/man/man1/sc-ssh-agent.1
+	mv $(BUILDHOME)/compiled-openssh/Library/OpenSSH/share/man/man1/ssh-keygen.1 $(BUILDHOME)/compiled-openssh/Library/OpenSSH/share/man/man1/sc-ssh-keygen.1
+	mv $(BUILDHOME)/compiled-openssh/Library/OpenSSH/share/man/man1/ssh.1 $(BUILDHOME)/compiled-openssh/Library/OpenSSH/share/man/man1/sc-ssh.1
+	mv $(BUILDHOME)/compiled-openssh/Library/OpenSSH/share/man/man1/scp.1 $(BUILDHOME)/compiled-openssh/Library/OpenSSH/share/man/man1/sc-scp.1
+	mv $(BUILDHOME)/compiled-openssh/Library/OpenSSH/share/man/man1/sftp.1 $(BUILDHOME)/compiled-openssh/Library/OpenSSH/share/man/man1/sc-sftp.1
+	rm -f $(BUILDHOME)/compiled-openssh/Library/OpenSSH/share/man/man1/slogin.1
+	cd $(BUILDHOME)/compiled-openssh/Library/OpenSSH/share/man/man1/ && ln -s ./sc-ssh.1 sc-slogin.1
 	mkdir -p $(BUILDHOME)/compiled-openssh/usr/local/bin
 	cp $(BUILDHOME)/openssh-uninstall $(BUILDHOME)/compiled-openssh/usr/local/bin
 	touch $@
 
 install-openssh: build-openssh
-	cp -HR $(BUILDHOME)/compiled-openssh/Library/OpenSC /Library
+	cp -HR $(BUILDHOME)/compiled-openssh/Library/OpenSSH /Library
 	touch $@
 
 package-openssh: build-openssh

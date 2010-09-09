@@ -5,17 +5,17 @@ for Mac OS X 10.6 (Snow Leopard), universal (32-bit and 64-bit)
 This OpenSSH provides recompiled ssh applications to work with smart cards. 
 Native OpenSSH (5.2p1) didn't support smart cards. 
 
-To compile it, just grab this git repository, then just a 'OSX_RELEASE="10.5" make' on a MacOSX 10.5 
-with the last XCode or 'OSX_RELEASE="10.6" make' on a MacOSX 10.6 with the last XCode.
+To compile it, just grab this git repository, then just do a 'OSX_RELEASE="10.5" make' on a MacOSX 10.5 
+with the last XCode or a 'OSX_RELEASE="10.6" make' on a MacOSX 10.6 with the last XCode.
 
-All executables will be installed in /Library/OpenSC/bin/ and are prepended with a 'sc' (ssh -> scssh),
+All executables will be installed in /Library/OpenSSH/bin/ and are prepended with a 'sc-' (ssh -> sc-ssh),
 so there is no conflict with the native executables installed with MacOSX. You can also add 
-/Library/OpenSC/bin to your $PATH without conflict.
+/Library/OpenSSH/bin to your $PATH without conflict.
 
 To test and to use:
 /Library/OpenSC/bin/pkcs15-tool --read-ssh-key your_id
 Paste the relevant line to the authorized_keys file on the remote system
-/Library/OpenSC/bin/scssh -I /Librart/OpenSC/lib/opensc-pkcs11.so login@remote.org
+/Library/OpenSSH/bin/sc-ssh -I /Library/OpenSC/lib/opensc-pkcs11.so login@remote.org
 
 Documentation:
 The OpenSC Wiki is available at: http://www.opensc-project.org/opensc and should be consulted for further 

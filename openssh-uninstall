@@ -6,15 +6,18 @@ if [ "$(id -u)" != "0" ]; then
    exit 1
 fi
 
-for file in /Library/OpenSC/bin/scscp /Library/OpenSC/bin/scsftp /Library/OpenSC/bin/scssh /Library/OpenSC/bin/scssh-add /Library/OpenSC/bin/scssh-agent /Library/OpenSC/bin/scssh-keygen /Library/OpenSC/etc/moduli /Library/OpenSC/etc/ssh_config /Library/OpenSC/share/man/man1/scssh-add.1 /Library/OpenSC/share/man/man1/scssh-agent.1 /Library/OpenSC/share/man/man1/scssh-keygen.1 /Library/OpenSC/share/man/man1/scssh.1 /Library/OpenSC/share/man/man1/scscp.1 /Library/OpenSC/share/man/man1/scsftp.1 /Library/OpenSC/share/man/man5/scssh_config.5 /Library/OpenSC/share/man/man5/moduli.5; do
+for file in /Library/OpenSSH/bin/sc-scp /Library/OpenSSH/bin/sc-sftp /Library/OpenSSH/bin/sc-ssh /Library/OpenSSH/bin/sc-ssh-add /Library/OpenSSH/bin/sc-ssh-agent /Library/OpenSSH/bin/sc-ssh-keygen /Library/OpenSSH/etc/moduli /Library/OpenSSH/etc/ssh_config /Library/OpenSSH/share/man/man1/sc-ssh-add.1 /Library/OpenSSH/share/man/man1/sc-ssh-agent.1 /Library/OpenSSH/share/man/man1/sc-ssh-keygen.1 /Library/OpenSSH/share/man/man1/sc-ssh.1 /Library/OpenSSH/share/man/man1/sc-scp.1 /Library/OpenSSH/share/man/man1/sc-sftp.1 /Library/OpenSSH/share/man/man5/ssh_config.5 /Library/OpenSSH/share/man/man5/moduli.5; do
 	test -f $file && rm -f $file
 done
 
-for file in /Library/OpenSC/bin/scslogin /Library/OpenSC/share/man/man1/scslogin.1; do
+for file in /Library/OpenSSH/bin/sc-slogin /Library/OpenSSH/share/man/man1/sc-slogin.1; do
 	test -L $file && rm -f $file
 done
 
 rm -f /usr/local/bin/openssh-uninstall
+
+# delete receipts on 10.5
+test -d /Library/Receipts/OpenSSH-5.6p1.pkg && rm -rf /Library/Receipts/OpenSSH-5.6p1.pkg
 
 # delete receipts on 10.6
 for file in /var/db/receipts/org.opensc-project.mac.ssh.bom /var/db/receipts/org.opensc-project.mac.ssh.plist; do

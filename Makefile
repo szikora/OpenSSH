@@ -39,7 +39,7 @@ ifeq ("$(OSX_RELEASE)","10.6")
 	LIBS="-lresolv" \
 	CFLAGS="-arch x86_64 -arch i386" \
 	LDFLAGS="-arch x86_64 -arch i386" \
-	./configure --prefix=/Library/OpenSSH  && \
+	./configure --without-openssl-header-check --prefix=/Library/OpenSSH  && \
 	make && \
 	make install-nokeys prefix=$(BUILDHOME)/compiled-openssh/Library/OpenSSH
 endif

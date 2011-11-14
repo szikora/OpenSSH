@@ -1,5 +1,5 @@
 BUILDHOME = $(PWD)
-OPENSSHVERSION = 5.8p2
+OPENSSHVERSION = 5.9p1
 
 all: package-openssh
 
